@@ -91,6 +91,13 @@ public class AaaKafkaIntegration {
     private static final String UNKNOWN_SERVER_RX = "unknownServerRx";
     private static final String REQUEST_RTT_MILLIS = "requestRttMillis";
     private static final String REQUEST_RE_TX = "requestReTx";
+    private static final String EAPOL_LOGOFF_RX = "eapolLogoffRx";
+    private static final String EAPOL_RES_IDENTITY_MSG_TRANS = "eapolResIdentityMsgTrans";
+    private static final String AUTH_SUCCESS_TRANS = "authSuccessTrans";
+    private static final String AUTH_FAILURE_TRANS = "authFailureTrans";
+    private static final String START_REQ_TRANS = "startReqTrans";
+    private static final String EAP_PKT_TX_AUTH_EAP = "eapPktTxauthEap";
+    private static final String TRANS_RESP_NOT_NAK = "transRespnotNak";
 
     protected void bindAuthenticationService(AuthenticationService authenticationService) {
         log.info("bindAuthenticationService");
@@ -189,6 +196,14 @@ public class AaaKafkaIntegration {
         authMetricsEvent.put(UNKNOWN_SERVER_RX, event.subject().getUnknownServerRx());
         authMetricsEvent.put(REQUEST_RTT_MILLIS, event.subject().getRequestRttMilis());
         authMetricsEvent.put(REQUEST_RE_TX, event.subject().getRequestReTx());
+        authMetricsEvent.put(EAPOL_LOGOFF_RX, event.subject().getEapolLogoffRx());
+        authMetricsEvent.put(EAPOL_RES_IDENTITY_MSG_TRANS, event.subject().getEapolResIdentityMsgTrans());
+        authMetricsEvent.put(AUTH_SUCCESS_TRANS, event.subject().getEapolAuthSuccessTrans());
+        authMetricsEvent.put(AUTH_FAILURE_TRANS, event.subject().getEapolAuthFailureTrans());
+        authMetricsEvent.put(START_REQ_TRANS, event.subject().getEapolStartReqTrans());
+        authMetricsEvent.put(EAP_PKT_TX_AUTH_EAP, event.subject().getEapPktTxauthChooseEap());
+        authMetricsEvent.put(TRANS_RESP_NOT_NAK, event.subject().getEapolTransRespNotNak());
+        log.debug("getTransRespnotNak--" + event.subject().getEapolTransRespNotNak());
         return authMetricsEvent;
     }
 
